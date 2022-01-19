@@ -2,18 +2,18 @@ import numpy as np
 
 class Solution:
     def maxArea(self, height):
-        N = len(height)
-        D = np.zeros((N, N))
-        for i in range(N):
-            for j in range(i, N):
-                if i == j:
-                    continue
-                D[i][j] = self.calculate_area(i, j, height)
-                D[j][i] = self.calculate_area(i, j, height)
-        return int(np.amax(D))
+        max_area = []
+        p1, p2 = 0, len(height) - 1
+        while p1 < p2:
+            curr_area = (p2 - p1) * min(height[p1], height[p2])
+            max_area.append(curr_area)
 
-
-    def calculate_area(self, i, j, height):
-        length = abs(i - j)
-        height = min(height[i], height[j])
-        return length * height
+            #if limiting height is p1, change it
+            if height[p1] <= height[p2]:
+                p1 += 1
+            #else limiting height is p2
+            else:
+                p2 -= 1
+        max_area = sorted(max_area)
+        #pick out last element of sorted list, which is therefore the largest element
+        return max_area[-1]
