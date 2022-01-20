@@ -1,15 +1,15 @@
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
+import java.util.HashSet;
+import java.util.Set;
+
+class ListNode {
+      int val;
+      ListNode next;
+      ListNode(int x) {
+          val = x;
+          next = null;
+      }
+  }
+public class LinkedListCycleII {
     public ListNode detectCycle(ListNode head) {
        Set<ListNode> visitList = new HashSet<>();
        while (head != null){
