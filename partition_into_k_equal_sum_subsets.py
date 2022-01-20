@@ -1,4 +1,5 @@
 import numpy as np
+from copy import deepcopy
 
 
 class Graph:
@@ -48,14 +49,22 @@ class Solution:
         # if we can partition into k equal subsets, we know that the sum of all elements in the list / k = sum of elements in each partition
         # therefore we can get goal by sum_elements / k
         subset_sum = np.sum(nums) / k
+        if not subset_sum.is_integer():
+            return False
+        # if there is an element larger than what we wish to split the elements into, we know that it is impossible
         nums = sorted(nums)[::-1]
         if nums[0] > subset_sum:
             return False
-        return self.recursively_partition_k_subsets(nums, subset_sum, k)
-        # if there is an element larger than what we wish to split the elements into, we know that it is impossible
-        return True
-
-    def recursively_partition_k_subsets(self, nums, target, k):
+        for j in range(len(nums)):
+            nums.append(nums.pop(0))
+            temp_nums = deepcopy(nums)
+            for i in range(k):
+                temp_nums, success = self.subset_sum(temp_nums, subset_sum)
+                if not success:
+                    break
+            if success:
+                return True
+        return False
 
     def remove_indices(self, indices, nums):
         for index in indices:
@@ -93,8 +102,8 @@ class Solution:
 
 
 def test():
-    nums = [4, 5, 9, 3, 10, 2, 10, 7, 10, 8, 5, 9, 4, 6, 4, 9]
-    k = 5
+    nums = [2999, 3914, 1064, 927, 64, 1130, 2048, 235, 159, 3549, 241, 987, 972, 976, 279, 1004]
+    k = 4
     sol = Solution()
     sol.canPartitionKSubsets(nums, k)
 
