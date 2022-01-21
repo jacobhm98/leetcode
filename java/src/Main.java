@@ -1,9 +1,15 @@
 public class Main {
 
     public static void main(String[] args) {
+        testLongestSubstringWithoutRepeatingCharacters();
     }
 
-    private void testKokoEatingBananas(){
+    private static void testLongestSubstringWithoutRepeatingCharacters(){
+        String s = "abcabcbb";
+        LongestSubstringWithoutRepeatingCharacters sol = new LongestSubstringWithoutRepeatingCharacters();
+        System.out.println(sol.lengthOfLongestSubstring(s));
+    }
+    private static void testKokoEatingBananas(){
         //int[] piles = {30, 11, 23, 4, 20};
         int[] piles = {122890061,438301112,257983174,614414075,602060597,391389864,140358431,117439906,992360201,246252220};
         int h = 33212669;
