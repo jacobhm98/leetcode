@@ -5,8 +5,8 @@ public class Main {
     }
 
     private static void testMedianOfTwoSortedArrays(){
-        int[] num1 = {1, 2};
-        int[] num2 = {1, 2, 3};
+        int[] num1 = {1};
+        int[] num2 = {2, 3, 4, 5, 6};
         MedianOfTwoSortedArrays sol = new MedianOfTwoSortedArrays();
         System.out.println(sol.findMedianSortedArrays(num1, num2));
     }

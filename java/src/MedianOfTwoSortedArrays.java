@@ -9,18 +9,13 @@ class MedianOfTwoSortedArrays {
         if (num2.length == 0) {
             return getMedianValue(num1, 0, num1.length - 1);
         }
+        if (getMedianValue(num1, 0, num1.length - 1) == getMedianValue(num2, 0, num2.length - 1)){
+            return getMedianValue(num1, 0, num1.length - 1);
+        }
         return findMedianSortedArraysRec(num1, 0, num1.length - 1, num2, 0, num2.length - 1);
     }
 
     private double findMedianSortedArraysRec(int[] num1, int p11, int p12, int[] num2, int p21, int p22) {
-
-        double m1 = getMedianValue(num1, p11, p12);
-        double m2 = getMedianValue(num2, p21, p22);
-
-        //base cases
-        if (m1 == m2) {
-            return m1;
-        }
 
         if (p12 - p11 <= 1 && p22 - p21 <= 1) {
             int[] medianContainingArray;
@@ -39,12 +34,14 @@ class MedianOfTwoSortedArrays {
             if (discardedLeft == discardedRight) {
                 return getMedianValue(medianContainingArray, 0, medianContainingArray.length - 1);
             } else if (discardedRight > discardedLeft) {
-                return getMedianValue(medianContainingArray, 1, medianContainingArray.length - 1);
+                return getMedianValue(medianContainingArray, discardedRight - discardedLeft, medianContainingArray.length - 1);
             } else {
-                return getMedianValue(medianContainingArray, 0, medianContainingArray.length - 2);
+                return getMedianValue(medianContainingArray, 0, medianContainingArray.length - 1 - (discardedLeft - discardedRight));
             }
         }
 
+        double m1 = getMedianValue(num1, p11, p12);
+        double m2 = getMedianValue(num2, p21, p22);
 
         //recursion
         if (m1 > m2) {
