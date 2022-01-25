@@ -1,13 +1,14 @@
-import java.util.*;
+import java.util.stream.IntStream;
 
 class GasStation{
 	
 	public int canCompleteCircuit(int[] gas, int[] cost){
-		int totalGas = Instream.of(gas).sum();
-		int totalCost = Instream.of(cost).sum();
+		int totalGas = IntStream.of(gas).sum();
+		int totalCost = IntStream.of(cost).sum();
 		if (totalGas < totalCost){
 			return -1;
 		}
+		return 0;
 		
 	}
 }

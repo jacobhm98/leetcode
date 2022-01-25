@@ -1,9 +1,15 @@
 public class Main {
 
     public static void main(String[] args) {
-        testLongestSubstringWithoutRepeatingCharacters();
+        testMedianOfTwoSortedArrays();
     }
 
+    private static void testMedianOfTwoSortedArrays(){
+        int[] num1 = {1, 2};
+        int[] num2 = {1, 2, 3};
+        MedianOfTwoSortedArrays sol = new MedianOfTwoSortedArrays();
+        System.out.println(sol.findMedianSortedArrays(num1, num2));
+    }
     private static void testLongestSubstringWithoutRepeatingCharacters(){
         String s = "abcabcbb";
         LongestSubstringWithoutRepeatingCharacters sol = new LongestSubstringWithoutRepeatingCharacters();
